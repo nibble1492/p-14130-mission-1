@@ -8,8 +8,16 @@ class App {
             print("명령) ")
             val command = readln()
 
-            if (command == "종료") {
-                break
+            when (command) {
+                "종료" -> {
+                    break
+                }
+                "등록" -> {
+                    print("명언 : ")
+                    val content = readln()
+                    print("작가 : ")
+                    val author = readln()
+                }
             }
         }
     }
