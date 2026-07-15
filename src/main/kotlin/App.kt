@@ -36,9 +36,13 @@ class App {
                 }
                 "삭제" -> {
                     val id = parseId(cmdBits)
-                    if (id != null) {
-                        wiseSayings.removeIf { it.id == id }
+                    val found = wiseSayings.find {it.id == id}
+                    if(found != null) {
+                        wiseSayings.remove(found)
                         println("${id}번 명언이 삭제되었습니다.")
+                    }
+                    else {
+                        println("${id}번 명언은 존재하지 않습니다.")
                     }
                 }
             }
