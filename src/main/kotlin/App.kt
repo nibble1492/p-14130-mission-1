@@ -45,6 +45,28 @@ class App {
                         println("${id}번 명언은 존재하지 않습니다.")
                     }
                 }
+                "수정" -> {
+                    val id = parseId(cmdBits)
+                    val found = wiseSayings.find {it.id == id}
+
+                    if(found != null) {
+                        val index = wiseSayings.indexOf(found)
+
+                        println("명언(기존) : ${wiseSayings[index].content}")
+                        print("명언 : ")
+                        val newContent = readln().trim()
+                        println("작가(기존) : ${wiseSayings[index].author}")
+                        print("작가 : ")
+                        val newAuthor = readln().trim()
+
+                        val updated = found.copy(content = newContent, author = newAuthor)
+
+                        wiseSayings[index] = updated
+                    }
+                    else {
+                        println("${id}번 명언은 존재하지 않습니다.")
+                    }
+                }
             }
         }
     }
