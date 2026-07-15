@@ -6,7 +6,7 @@ class App {
 
         while (true) {
             print("명령) ")
-            val command = readln()
+            val command = readln().trim()
 
             when (command) {
                 "종료" -> {
@@ -14,9 +14,9 @@ class App {
                 }
                 "등록" -> {
                     print("명언 : ")
-                    val content = readln()
+                    val content = readln().trim()
                     print("작가 : ")
-                    val author = readln()
+                    val author = readln().trim()
                 }
             }
         }
