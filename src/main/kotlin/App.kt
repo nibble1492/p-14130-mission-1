@@ -1,8 +1,8 @@
 package com
 
 class App {
-    private var lastId = 0;
-    val wiseSayings = mutableListOf<WiseSaying>()
+    private var lastId = 0
+    private val wiseSayings = mutableListOf<WiseSaying>()
     fun run() {
         println("== 명언 앱 ==")
 
