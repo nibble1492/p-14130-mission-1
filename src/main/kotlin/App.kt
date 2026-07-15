@@ -35,8 +35,8 @@ class App {
                     }
                 }
                 "삭제" -> {
-                    val id = parseId(cmdBits)
-                    val found = wiseSayings.find {it.id == id}
+                    val id = parseId(cmdBits) ?: continue
+                    val found = wiseSayings.find { it.id == id }
                     if(found != null) {
                         wiseSayings.remove(found)
                         println("${id}번 명언이 삭제되었습니다.")
@@ -46,16 +46,16 @@ class App {
                     }
                 }
                 "수정" -> {
-                    val id = parseId(cmdBits)
+                    val id = parseId(cmdBits) ?: continue
                     val found = wiseSayings.find {it.id == id}
 
                     if(found != null) {
                         val index = wiseSayings.indexOf(found)
 
-                        println("명언(기존) : ${wiseSayings[index].content}")
+                        println("명언(기존) : ${found.content}")
                         print("명언 : ")
                         val newContent = readln().trim()
-                        println("작가(기존) : ${wiseSayings[index].author}")
+                        println("작가(기존) : ${found.author}")
                         print("작가 : ")
                         val newAuthor = readln().trim()
 
@@ -72,14 +72,22 @@ class App {
     }
 
     private fun parseId(cmdBits: List<String>): Int? {
-        if(cmdBits.size < 2) return null
+        if(cmdBits.size < 2) {
+            println("올바른 id를 입력해주세요.")
+            return null
+        }
 
         val queryBit = cmdBits[1].split("=", limit = 2)
-        return if (queryBit[0] == "id" && queryBit.size > 1) {
+        val id = if (queryBit[0] == "id" && queryBit.size > 1) {
             queryBit[1].toIntOrNull()
-        }
-        else {
+        } else {
             null
         }
+
+        if (id == null) {
+            println("올바른 id를 입력해주세요. (예: 삭제?id=1)")
+        }
+
+        return id
     }
 }
